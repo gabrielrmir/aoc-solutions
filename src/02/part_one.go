@@ -54,5 +54,5 @@ func partOne() {
 	file, scanner := readInput("input.txt")
 	defer file.Close()
 	safeTotal := countSafe(scanner)
-	fmt.Println(safeTotal)
+	fmt.Println("Part one:", safeTotal)
 }
