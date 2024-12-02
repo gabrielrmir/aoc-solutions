@@ -6,24 +6,8 @@ import (
 	"log"
 	"os"
 	"slices"
-	"strconv"
 	"strings"
 )
-
-func parseInt(s string) int {
-	num, err := strconv.Atoi(s)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return num
-}
-
-func abs(x int) int {
-	if x < 0 {
-		return -x
-	}
-	return x
-}
 
 func readLists(filename string) ([]int, []int) {
 	file, err := os.Open(filename)
@@ -58,8 +42,8 @@ func totalDistance(left []int, right []int) int {
 	return sum
 }
 
-func main() {
+func partOne() {
 	left, right := readLists("input.txt")
 	dist := totalDistance(left, right)
-	fmt.Println(dist)
+	fmt.Println("Part one:", dist)
 }
