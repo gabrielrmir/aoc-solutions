@@ -53,3 +53,34 @@ func (w *World) findAntinodes() map[[2]int]bool {
 
 	return antinodes
 }
+
+func (w *World) createResonatingLine(antinodes map[[2]int]bool, x, y, dx, dy int) {
+	rx := x
+	ry := y
+	for !w.isPointOutOfBounds(rx, ry) {
+		antinodes[[2]int{rx, ry}] = true
+		rx += dx
+		ry += dy
+	}
+}
+
+func (w *World) findResonantAntinodes() map[[2]int]bool {
+	antinodes := make(map[[2]int]bool)
+	for _, channel := range w.nodes {
+		for _, node := range channel {
+			for _, otherNode := range channel {
+				if node == otherNode {
+					continue
+				}
+
+				dx := otherNode[0] - node[0]
+				dy := otherNode[1] - node[1]
+
+				w.createResonatingLine(antinodes, node[0], node[1], dx, dy)
+				w.createResonatingLine(antinodes, node[0], node[1], -dx, -dy)
+			}
+		}
+	}
+
+	return antinodes
+}

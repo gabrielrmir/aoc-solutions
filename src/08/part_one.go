@@ -16,11 +16,7 @@ func readInput(filename string) (*os.File, *bufio.Scanner) {
 	return file, scanner
 }
 
-func partOne() {
-	file, scanner := readInput("input.txt")
-	defer file.Close()
-
-	world := loadWorld(scanner)
+func partOne(world *World) {
 	antinodes := world.findAntinodes()
-	fmt.Println(len(antinodes))
+	fmt.Println("Part one:", len(antinodes))
 }
