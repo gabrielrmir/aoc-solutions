@@ -6,4 +6,5 @@ func main() {
 	world := loadWorld(scanner)
 
 	partOne(world)
+	partTwo(world)
 }
